@@ -2,11 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Message {
+type MessageModel {
   id: Int!
   text: String!
 }
 
 type Query {
-  message: Message!
+  message: MessageModel!
 }

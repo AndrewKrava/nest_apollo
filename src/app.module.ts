@@ -31,6 +31,6 @@ import { UserModule } from './user/user.module';
     }),
   ],
   controllers: [AppController, MessagesController, UserController],
-  providers: [AppService, UserService],
+  providers: [AppService], //UserService],
 })
 export class AppModule {}

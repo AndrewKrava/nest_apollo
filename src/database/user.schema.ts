@@ -5,9 +5,10 @@ import { Schema } from 'mongoose';
 import { IUser } from './user.type';
 
 export const UserSchema = new Schema<IUser>({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  //   username: {
+  //     type: String,
+  //     required: true,
+  //     unique: true,
+  //   },
+  username: String,
 });

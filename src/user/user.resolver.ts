@@ -15,7 +15,7 @@ export class UserResolver {
   }
 
   @Query((returns) => UserModel)
-  refreshAuth() {
-    return this.userService.refreshAuth();
+  async refreshAuth() {
+    return await this.userService.refreshAuth();
   }
 }
