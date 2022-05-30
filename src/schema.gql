@@ -7,6 +7,16 @@ type MessageModel {
   text: String!
 }
 
+type UserModel {
+  id: String!
+  username: String!
+}
+
 type Query {
   message: MessageModel!
+  refreshAuth(id: String!): UserModel!
+}
+
+type Mutation {
+  registerUser(username: String!): UserModel!
 }

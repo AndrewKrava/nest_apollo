@@ -30,7 +30,9 @@ import { UserModule } from './user/user.module';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
   ],
-  controllers: [AppController, MessagesController, UserController],
-  providers: [AppService], //UserService],
+  controllers: [AppController, MessagesController],
+  //   controllers: [AppController, MessagesController, UserController],
+
+  providers: [AppService],
 })
 export class AppModule {}
