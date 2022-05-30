@@ -2,21 +2,25 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type MessageModel {
-  id: Int!
-  text: String!
-}
-
 type UserModel {
   id: String!
   username: String!
 }
 
+type MessageModel {
+  id: String!
+  text: String!
+  username: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
 type Query {
-  message: MessageModel!
   refreshAuth(id: String!): UserModel!
+  getMessages: [MessageModel!]!
 }
 
 type Mutation {
   registerUser(username: String!): UserModel!
+  createMessage(username: String!, text: String!): MessageModel!
 }

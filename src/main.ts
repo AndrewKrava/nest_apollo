@@ -4,8 +4,8 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  // TODO modify port
   await app.listen(3000);
 }
 bootstrap();
-
-// npm i @nestjs/graphql @nestjs/apollo graphql apollo - server - express
