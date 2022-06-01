@@ -3,9 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    cors: true,
-  });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   //     , {
   //     cors: {
   //       origin: '*',
@@ -15,7 +13,7 @@ async function bootstrap() {
 
   //   app.enableCors();
 
-  app.enableCors({
+  app.use({
     origin: ['https://studio.apollographql.com', '*'],
     credentials: true,
   });
