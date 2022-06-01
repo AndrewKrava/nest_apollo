@@ -12,7 +12,7 @@ async function bootstrap() {
   //   });
 
   app.enableCors({
-    origin: '*',
+    origin: ['https://studio.apollographql.com', '*'],
     credentials: true,
   });
 
