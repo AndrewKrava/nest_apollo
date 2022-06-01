@@ -4,7 +4,7 @@ import { Module } from '@nestjs/common';
 // Modules
 import { DatabaseModule } from 'src/tools/database/database.module';
 
-// Controllers
+// Tools
 import { messageProviders } from './message.providers';
 import { MessageResolver } from './message.resolver';
 import { MessageService } from './message.service';

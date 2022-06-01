@@ -1,5 +1,9 @@
 // Core
-import { Injectable, Inject } from '@nestjs/common';
+import {
+  Injectable,
+  Inject,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Model } from 'mongoose';
 
 // Database Schemas
@@ -14,22 +18,49 @@ export class MessageService {
     @Inject(MESSAGE_MODEL) private readonly messageModel: Model<IMessage>,
   ) {}
 
-  async createMessage(username: string, text: string): Promise<IMessage> {
-    const newMessage = new this.messageModel({ username, text });
-    return newMessage.save();
-  }
-
-  async getMessages(): Promise<IMessage[]> {
-    console.log('getMessages');
-    const messages = await this.messageModel.find();
+  async getAllMessages(): Promise<IMessage[]> {
+    let messages;
+    try {
+      messages = await this.messageModel.find();
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
     return messages.splice(0, 50);
   }
 
-  async updateMessage(id: string, message: IMessage): Promise<IMessage> {
-    return this.messageModel.findByIdAndUpdate(id, message, { new: true });
+  async createMessage(username: string, text: string): Promise<IMessage> {
+    const newMessage = new this.messageModel({ username, text });
+    let result;
+    try {
+      result = await newMessage.save();
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+    return result;
   }
 
-  async deleteMessage(id: string): Promise<IMessage> {
-    return this.messageModel.findByIdAndDelete(id);
+  async updateMessage(id: string, text: string): Promise<IMessage> {
+    let updatedMessage;
+    try {
+      updatedMessage = await this.messageModel.findByIdAndUpdate(
+        id,
+        { text },
+        {
+          new: true,
+        },
+      );
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+    return updatedMessage;
+  }
+
+  async deleteMessage(id: string): Promise<boolean> {
+    try {
+      await this.messageModel.findByIdAndDelete(id);
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 }

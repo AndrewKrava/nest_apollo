@@ -8,12 +8,9 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 // Modules
 import { UserModule } from './bus/user/user.module';
 import { MessageModule } from './bus/message/message.module';
-import { CarModule } from './car.router/car.module';
 
-// **imports used to insert extend module
 @Module({
   imports: [
-    CarModule,
     UserModule,
     MessageModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({

@@ -1,5 +1,9 @@
 // Core
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Model } from 'mongoose';
 
 // Database Schemas
@@ -14,10 +18,32 @@ export class UserService {
 
   async registrUser(username: string): Promise<IUser> {
     const user = new this.userModel({ username });
-    return user.save();
+    let result;
+    try {
+      result = await user.save();
+    } catch (error) {
+      result = await this.getUserByUsername(username);
+    }
+    return result;
   }
 
-  async refreshAuth(_id: string): Promise<IUser> {
-    return this.userModel.findById({ _id });
+  private async getUserByUsername(username: string): Promise<IUser> {
+    let user;
+    try {
+      user = await this.userModel.findOne({ username });
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+    return user;
+  }
+
+  async getUserById(_id: string): Promise<IUser> {
+    let user;
+    try {
+      user = await this.userModel.findById({ _id });
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+    return user;
   }
 }

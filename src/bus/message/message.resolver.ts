@@ -8,24 +8,29 @@ import { MessageModel } from './message.model';
 import { MessageService } from './message.service';
 
 // Constants
-import { TEXT, USERNAME } from 'src/constants';
+import { ID, TEXT, USERNAME } from 'src/constants';
 
-// Types
-import { IMessage } from './message.type';
-
-@Resolver((of) => MessageModel)
+@Resolver(() => MessageModel)
 export class MessageResolver {
   constructor(private readonly messageService: MessageService) {}
 
-  @Query((returns) => [MessageModel])
-  async getMessages() {
-    return await this.messageService.getMessages();
+  @Query(() => [MessageModel])
+  getMessages() {
+    return this.messageService.getAllMessages();
   }
-  @Mutation((returns) => MessageModel)
-  async createMessage(
-    @Args(USERNAME) username: string,
-    @Args(TEXT) text: string,
-  ) {
-    return await this.messageService.createMessage(username, text);
+
+  @Mutation(() => MessageModel)
+  createMessage(@Args(USERNAME) username: string, @Args(TEXT) text: string) {
+    return this.messageService.createMessage(username, text);
+  }
+
+  @Mutation(() => MessageModel)
+  updateMessage(@Args(ID) id: string, @Args(TEXT) text: string) {
+    return this.messageService.updateMessage(id, text);
+  }
+
+  @Mutation(() => Boolean)
+  deleteMessage(@Args(ID) id: string) {
+    return this.messageService.deleteMessage(id);
   }
 }

@@ -4,14 +4,6 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  //     , {
-  //     cors: {
-  //       origin: '*',
-  //       credentials: true,
-  //     },
-  //   });
-
-  //   app.enableCors();
 
   app.enableCors({
     origin: ['https://studio.apollographql.com', '*'],
@@ -22,6 +14,5 @@ async function bootstrap() {
   const port = process.env.PORT || 3000;
   await app.listen(port);
   console.log('server started on port ' + port);
-  console.log('node env ', process.env.NODE_ENV);
 }
 bootstrap();

@@ -1,5 +1,4 @@
 // Core
-import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 // Models
@@ -16,25 +15,12 @@ export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Mutation((returns) => UserModel)
-  async registerUser(@Args(USERNAME) username: string) {
-    let newUser;
-    try {
-      newUser = await this.userService.registrUser(username);
-    } catch (error) {
-      throw new BadRequestException(`${error.message}. Username: ${username}`);
-    }
-
-    return newUser;
+  async registrUser(@Args(USERNAME) username: string) {
+    return this.userService.registrUser(username);
   }
 
   @Query((returns) => UserModel)
   async refreshAuth(@Args(ID) id: string) {
-    let result;
-    try {
-      result = await this.userService.refreshAuth(id);
-    } catch {
-      throw new NotFoundException('wrong id ' + id);
-    }
-    return result;
+    return this.userService.getUserById(id);
   }
 }

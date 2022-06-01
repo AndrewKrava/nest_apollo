@@ -21,6 +21,8 @@ type Query {
 }
 
 type Mutation {
-  registerUser(username: String!): UserModel!
+  registrUser(username: String!): UserModel!
   createMessage(username: String!, text: String!): MessageModel!
+  updateMessage(id: String!, text: String!): MessageModel!
+  deleteMessage(id: String!): Boolean!
 }
