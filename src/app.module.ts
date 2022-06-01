@@ -23,7 +23,7 @@ import { CarModule } from './car.router/car.module';
       //     origin: '*',
       //     credentials: true,
       //   },
-      cors: false,
+      //   cors: false,
       playground: false,
       introspection: true,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
