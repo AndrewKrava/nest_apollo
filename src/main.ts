@@ -11,10 +11,10 @@ async function bootstrap() {
   //     },
   //   });
 
-  app.enableCors({
-    origin: ['https://studio.apollographql.com', '*'],
-    credentials: true,
-  });
+  //   app.enableCors({
+  //     origin: ['https://studio.apollographql.com', '*'],
+  //     credentials: true,
+  //   });
 
   // TODO modify port
   const port = process.env.PORT || 3000;
