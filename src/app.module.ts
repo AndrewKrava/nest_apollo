@@ -24,7 +24,7 @@ import { CarModule } from './car.router/car.module';
         credentials: true,
       },
       playground: false,
-      introspection: false,
+      introspection: true,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
   ],
