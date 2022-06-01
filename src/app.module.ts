@@ -19,7 +19,7 @@ import { CarModule } from './car.router/car.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      cors: false,
+      cors: true,
       playground: false,
       introspection: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
