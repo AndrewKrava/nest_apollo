@@ -20,6 +20,7 @@ export class MessageService {
   }
 
   async getMessages(): Promise<IMessage[]> {
+    console.log('getMessages');
     const messages = await this.messageModel.find();
     return messages.splice(0, 50);
   }

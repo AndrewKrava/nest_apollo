@@ -20,6 +20,7 @@ import { CarModule } from './car.router/car.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: true,
+      introspection: true,
       //   plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
   ],
