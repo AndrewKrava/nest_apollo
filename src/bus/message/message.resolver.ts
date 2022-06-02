@@ -10,6 +10,9 @@ import { MessageService } from './message.service';
 // Constants
 import { ID, TEXT, USERNAME } from 'src/constants';
 
+// Pipes
+import { NotEmptyString } from 'src/tools/validation/NotEmptyString.pipe';
+
 @Resolver(() => MessageModel)
 export class MessageResolver {
   constructor(private readonly messageService: MessageService) {}
@@ -20,12 +23,18 @@ export class MessageResolver {
   }
 
   @Mutation(() => MessageModel)
-  createMessage(@Args(USERNAME) username: string, @Args(TEXT) text: string) {
+  createMessage(
+    @Args(USERNAME, NotEmptyString) username: string,
+    @Args(TEXT, NotEmptyString) text: string,
+  ) {
     return this.messageService.createMessage(username, text);
   }
 
   @Mutation(() => MessageModel)
-  updateMessage(@Args(ID) id: string, @Args(TEXT) text: string) {
+  updateMessage(
+    @Args(ID) id: string,
+    @Args(TEXT, NotEmptyString) text: string,
+  ) {
     return this.messageService.updateMessage(id, text);
   }
 

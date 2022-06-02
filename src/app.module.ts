@@ -19,7 +19,7 @@ import { MessageModule } from './bus/message/message.module';
       cors: false,
       playground: false,
       introspection: true,
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      // plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
   ],
 })

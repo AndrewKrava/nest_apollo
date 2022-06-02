@@ -10,16 +10,19 @@ import { UserService } from './user.service';
 // Constants
 import { ID, USERNAME } from 'src/constants';
 
-@Resolver((of) => UserModel)
+// Pipes
+import { NotEmptyString } from 'src/tools/validation/NotEmptyString.pipe';
+
+@Resolver(() => UserModel)
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  @Mutation((returns) => UserModel)
-  async registrUser(@Args(USERNAME) username: string) {
+  @Mutation(() => UserModel)
+  async registrUser(@Args(USERNAME, NotEmptyString) username: string) {
     return this.userService.registrUser(username);
   }
 
-  @Query((returns) => UserModel)
+  @Query(() => UserModel)
   async refreshAuth(@Args(ID) id: string) {
     return this.userService.getUserById(id);
   }

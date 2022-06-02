@@ -1,5 +1,8 @@
+// Core
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+
+// Modules
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -10,7 +13,6 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // TODO modify port
   const port = process.env.PORT || 3000;
   await app.listen(port);
   console.log('server started on port ' + port);
