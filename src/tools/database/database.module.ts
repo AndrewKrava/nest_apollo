@@ -1,4 +1,7 @@
+// Core
 import { Module } from '@nestjs/common';
+
+// Providers
 import { databaseProviders } from './database.providers';
 
 @Module({
