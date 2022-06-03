@@ -23,7 +23,7 @@ export class MessageService {
     try {
       //   messages = await this.messageModel.find();
       // TODO test
-      messages = await this.messageModel.find({}, null, { $size: 50 });
+      messages = await this.messageModel.find({}, null, { limit: 50 });
     } catch (error) {
       throw new InternalServerErrorException(error.message);
     }
