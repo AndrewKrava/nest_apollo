@@ -6,5 +6,5 @@ export interface IMessage extends Document {
   text: string;
   username: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: Date;
 }
