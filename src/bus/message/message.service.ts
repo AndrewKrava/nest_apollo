@@ -21,9 +21,9 @@ export class MessageService {
   async getAllMessages(): Promise<IMessage[]> {
     let messages;
     try {
-      messages = await this.messageModel.find();
+      //   messages = await this.messageModel.find();
       // TODO test
-      //   messages = await this.messageModel.find({ $size: 50 });
+      messages = await this.messageModel.find({ $size: 50 });
     } catch (error) {
       throw new InternalServerErrorException(error.message);
     }

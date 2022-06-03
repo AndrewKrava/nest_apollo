@@ -18,10 +18,8 @@ export class MessageResolver {
   constructor(private readonly messageService: MessageService) {}
 
   @Query(() => [MessageModel])
-  async getMessages() {
-    const result = await this.messageService.getAllMessages();
-    console.log('result ', result);
-    return result;
+  getMessages() {
+    return this.messageService.getAllMessages();
   }
 
   @Mutation(() => MessageModel)
