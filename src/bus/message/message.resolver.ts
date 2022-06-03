@@ -19,7 +19,9 @@ export class MessageResolver {
 
   @Query(() => [MessageModel])
   getMessages() {
-    return this.messageService.getAllMessages();
+    const result = this.messageService.getAllMessages();
+    console.log('result ', result);
+    return result;
   }
 
   @Mutation(() => MessageModel)
