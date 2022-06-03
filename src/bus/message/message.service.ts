@@ -27,7 +27,8 @@ export class MessageService {
     } catch (error) {
       throw new InternalServerErrorException(error.message);
     }
-    return messages.splice(0, 50);
+    // return messages.splice(0, 50);
+    return messages;
   }
 
   async createMessage(username: string, text: string): Promise<IMessage> {
